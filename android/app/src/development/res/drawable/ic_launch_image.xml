@@ -1,4 +1,4 @@
-<vector xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="1024dp"
     android:height="1024dp"
     android:viewportWidth="1024"
@@ -23,4 +23,4 @@
       android:pathData="M425.03,491.92C423.7,492.05 422.81,492.95 422.98,494.29C423.16,495.71 424.68,495.9 425.51,495.83C426.71,495.73 428.55,495.79 430.55,496.69C430.83,496.81 431.13,496.88 431.43,496.88C432.27,496.88 433.08,496.38 433.38,495.54C433.73,494.58 433.19,493.51 432.22,493.08C429.41,491.84 426.79,491.75 425.03,491.92Z"
       android:fillColor="#000000"
       android:fillType="evenOdd"/>
-</vector>
+</vector> -->

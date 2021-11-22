@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1005534317404",
+    "project_id": "baabte-content",
+    "storage_bucket": "baabte-content.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1005534317404:android:68f086b967bc1bff898f99",
+        "android_client_info": {
+          "package_name": "com.baabtra.csecom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1005534317404-pj7ovggcookf42ejgt1rsfnrpk2tenk1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOZNAV8z8OdG1oVhZGjb9DEKtHfwFrCrA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1005534317404-pj7ovggcookf42ejgt1rsfnrpk2tenk1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

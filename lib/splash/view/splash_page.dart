@@ -1,25 +1,30 @@
 import 'dart:developer';
 import 'package:csecom/router/router_constants.dart';
 import 'package:flutter/material.dart';
-import 'package:csecom/counter/counter.dart';
+import 'package:csecom/splash/splash.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Splash extends StatelessWidget {
-  const Splash({Key? key}) : super(key: key);
+  Splash({Key? key}) : super(key: key);
+  SplashBloc _splashBloc = SplashBloc();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: IconButton(
-            onPressed: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute<MaterialPageRoute>(
-              //       builder: (context) => CounterPage()),
-              // );
-              Navigator.pushNamed(context, RouteConstants.counterRoute);
-            },
-            icon: Icon(Icons.send)),
+    return BlocProvider<SplashBloc>(
+      create: (context) => _splashBloc..add(SplashStartEvent()),
+      child: Scaffold(
+        body: BlocConsumer<SplashBloc, SplashState>(
+          listener: (context, state) {
+            if (state is SplashNavigateToLogin) {
+              Navigator.pushNamed(context, RouteConstants.loginRoute);
+            }
+            print(state);
+          },
+          builder: (context, state) {
+            print(state);
+            return Center(child: Image.asset('assets/images/logo.jpeg'));
+          },
+        ),
       ),
     );
   }

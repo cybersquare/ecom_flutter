@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "55097848211",
+    "project_id": "csecom-dev",
+    "storage_bucket": "csecom-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:55097848211:android:a68aacd93670c279ec3866",
+        "android_client_info": {
+          "package_name": "com.baabtra.csecom.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "55097848211-vjabme0bt50j8jnqbtv71k17vvi1t7vl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPqtGLuSASk2d6ujycbXJNYzHmiXDLO_k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "55097848211-vjabme0bt50j8jnqbtv71k17vvi1t7vl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
