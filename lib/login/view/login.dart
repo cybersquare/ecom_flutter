@@ -32,7 +32,7 @@ class Login extends StatelessWidget {
             //   // ),
             // ),
             body: Container(
-              margin: EdgeInsets.only(top: 1.sh, right: 1.sw, left: 1.sw),
+              margin: EdgeInsets.only(top: 30, right: 20, left: 20),
               // decoration: Decoration,
               decoration: BoxDecoration(
                 color: Colors.white54,

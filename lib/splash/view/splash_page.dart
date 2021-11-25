@@ -16,7 +16,7 @@ class Splash extends StatelessWidget {
         body: BlocConsumer<SplashBloc, SplashState>(
           listener: (context, state) {
             if (state is SplashNavigateToLogin) {
-              Navigator.pushNamed(context, RouteConstants.loginRoute);
+              Navigator.pushNamed(context, RouteConstants.homeRoute);
             }
             print(state);
           },
