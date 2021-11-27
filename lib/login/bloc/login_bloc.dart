@@ -11,27 +11,20 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc() : super(LoginInitial()) {
     on<LoginEvent>((event, emit) async {
       if (event is LoginWithEmailAndPassword) {
-        // print(event.email);
-        // print(event.password);
-
-        // UserCredential user = await auth.createUserWithEmailAndPassword(
-        //   email: event.email,
-        //   password: event.password,
-
-        // );
-
-        // print(user.user?.email);
-        // print(user.user?.emailVerified);
-
-        // auth
-        //     .signInWithEmailAndPassword(
-        //         email: event.email, password: event.password)
-        //     .then((value) {
-        //   print(value.user);
-        // });
-        var userdetails = await auth.signInWithEmailAndPassword(
-            email: event.email, password: event.password);
-        print(userdetails);
+        try {
+          var userdetails = await auth.signInWithEmailAndPassword(
+            email: event.email,
+            password: event.password,
+          );
+          print(userdetails);
+          if (userdetails == null) {
+            print("LOGIN FAILED");
+          } else {
+            emit(NavigateToHomeScreen());
+          }
+        } catch (e) {
+          print('Login failed');
+        }
       }
     });
   }
