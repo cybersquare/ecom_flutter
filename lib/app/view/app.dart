@@ -34,8 +34,8 @@ class App extends StatelessWidget {
           GlobalMaterialLocalizations.delegate,
         ],
         supportedLocales: AppLocalizations.supportedLocales,
-        home: Splash(),
-        // home: ViewProfile(),
+        // home: Splash(),
+        home: ViewProfile(),
       ),
     );
   }
