@@ -1,3 +1,4 @@
+import 'package:csecom/viewProfile/views/widgets/edit_address_popup.dart';
 import 'package:csecom/viewProfile/views/widgets/profile_header.dart';
 import 'package:flutter/material.dart';
 
@@ -15,9 +16,15 @@ class ViewProfile extends StatelessWidget {
         title: ProfileHeader(),
         actions: [
           TextButton(
-            onPressed: () {},
-            child: Text(
-              "Edit",
+            onPressed: () {
+              showDialog<dynamic>(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return EditAddressPopup();
+                  });
+            },
+            child: const Text(
+              'Edit',
               style: TextStyle(fontSize: 20),
             ),
           ),

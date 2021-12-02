@@ -1,3 +1,4 @@
+import 'package:csecom/viewProfile/views/widgets/usertextfield.dart';
 import 'package:flutter/material.dart';
 
 class EditAddressPopup extends StatelessWidget {
@@ -18,33 +19,21 @@ class EditAddressPopup extends StatelessWidget {
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          TextField(
-            keyboardType: TextInputType.multiline,
-            decoration: const InputDecoration(
-              label: Text('Address'),
-            ),
-            controller: addressController,
+          UserTextFields(
+            editingController: addressController,
+            labelText: 'Adress',
           ),
-          TextField(
-            keyboardType: TextInputType.multiline,
-            decoration: const InputDecoration(
-              label: Text('Place'),
-            ),
-            controller: placeController,
+          UserTextFields(
+            editingController: placeController,
+            labelText: 'Place',
           ),
-          TextField(
-            keyboardType: TextInputType.multiline,
-            decoration: const InputDecoration(
-              label: Text('District'),
-            ),
-            controller: districtController,
+          UserTextFields(
+            editingController: districtController,
+            labelText: 'District',
           ),
-          TextField(
-            keyboardType: TextInputType.multiline,
-            decoration: const InputDecoration(
-              label: Text('State'),
-            ),
-            controller: stateController,
+          UserTextFields(
+            editingController: stateController,
+            labelText: 'State',
           ),
           ElevatedButton(
             child: const Text('Update'),
