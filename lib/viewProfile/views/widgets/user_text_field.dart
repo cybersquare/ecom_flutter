@@ -11,13 +11,11 @@ class UserTextFields extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: TextField(
-        controller: editingController,
-        keyboardType: TextInputType.multiline,
-        decoration: InputDecoration(
-          labelText: labelText,
-        ),
+    return TextField(
+      controller: editingController,
+      keyboardType: TextInputType.multiline,
+      decoration: InputDecoration(
+        labelText: labelText,
       ),
     );
   }
