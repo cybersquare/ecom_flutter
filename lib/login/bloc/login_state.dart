@@ -6,3 +6,5 @@ abstract class LoginState {}
 class LoginInitial extends LoginState {}
 
 class NavigateToHomeScreen extends LoginState {}
+
+class LoginFailedState extends LoginState {}

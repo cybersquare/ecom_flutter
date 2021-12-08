@@ -2,6 +2,8 @@ import 'package:csecom/login/login.dart';
 import 'package:csecom/router/router_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class LoginElements extends StatelessWidget {
   LoginElements({Key? key}) : super(key: key);
@@ -16,8 +18,23 @@ class LoginElements extends StatelessWidget {
       create: (context) => _loginBloc,
       child: BlocConsumer<LoginBloc, LoginState>(
         listener: (context, state) {
+          print(state);
           if (state is NavigateToHomeScreen) {
-            Navigator.pushNamed(context, RouteConstants.signupRoute);
+            Navigator.pushNamed(context, RouteConstants.profileRoute);
+            return showTopSnackBar(
+              context,
+              CustomSnackBar.success(
+                message: "Successfully logged in.....",
+              ),
+            );
+          } else {
+            return showTopSnackBar(
+              context,
+              CustomSnackBar.error(
+                message:
+                    "Login Failed... Please check your credentials and try again",
+              ),
+            );
           }
         },
         builder: (context, state) {

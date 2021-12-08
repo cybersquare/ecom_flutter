@@ -12,6 +12,7 @@ class ViewProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.blueGrey[50],
         toolbarHeight: MediaQuery.of(context).size.width / 3,
         title: const ProfileHeader(),
@@ -27,7 +28,7 @@ class ViewProfile extends StatelessWidget {
             },
             child: const Text(
               'Edit',
-              style: TextStyle(fontSize: 20),
+              style: TextStyle(fontSize: 15),
             ),
           ),
         ],

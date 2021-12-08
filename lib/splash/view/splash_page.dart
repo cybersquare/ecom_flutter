@@ -18,7 +18,7 @@ class Splash extends StatelessWidget {
             if (state is SplashNavigateToLogin) {
               Navigator.pushNamed(context, RouteConstants.loginRoute);
             } else if (state is SplashNavigateToHomeScreen) {
-              Navigator.pushNamed(context, RouteConstants.signupRoute);
+              Navigator.pushNamed(context, RouteConstants.profileRoute);
             }
           },
           builder: (context, state) {

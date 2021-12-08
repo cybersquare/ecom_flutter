@@ -8,7 +8,7 @@ class ProfileHeader extends StatelessWidget {
     return Row(
       children: [
         CircleAvatar(
-          radius: MediaQuery.of(context).size.width / 9,
+          radius: MediaQuery.of(context).size.width / 10,
           backgroundImage: const NetworkImage(
             'https://res.cloudinary.com/demo/image/facebook/65646572251.jpg',
           ),
@@ -25,7 +25,7 @@ class ProfileHeader extends StatelessWidget {
                 style: TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
-                  fontSize: 20,
+                  fontSize: 15,
                 ),
               ),
               Text(

@@ -11,10 +11,10 @@ class ProfileDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        const Divider(
-          thickness: 1,
-          height: 0.1,
-        ),
+        // const Divider(
+        //   thickness: 1,
+        //   height: 0.1,
+        // ),
         InkWell(
           child: Padding(
             padding: const EdgeInsets.only(bottom: 20),

@@ -23,8 +23,8 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
   @override
   Stream<SplashState> mapEventToState(SplashEvent event) async* {
     if (event is SplashStartEvent) {
+      await Future<dynamic>.delayed(const Duration(seconds: 4));
       if (FirebaseAuth.instance.currentUser == null) {
-        await Future<dynamic>.delayed(const Duration(seconds: 2));
         print("user not logged in");
         emit(SplashNavigateToLogin());
       } else {
