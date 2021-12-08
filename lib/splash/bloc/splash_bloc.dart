@@ -1,4 +1,6 @@
 import 'package:bloc/bloc.dart';
+import 'package:csecom/login/login.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
 
 part 'splash_event.dart';
@@ -21,8 +23,16 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
   @override
   Stream<SplashState> mapEventToState(SplashEvent event) async* {
     if (event is SplashStartEvent) {
-      await Future<dynamic>.delayed(Duration(seconds: 5));
-      yield SplashNavigateToLogin();
+      await Future<dynamic>.delayed(const Duration(seconds: 4));
+      if (FirebaseAuth.instance.currentUser == null) {
+        print("user not logged in");
+        emit(SplashNavigateToLogin());
+      } else {
+        print("user already logged in");
+        emit(SplashNavigateToHomeScreen());
+      }
+      // yield SplashNavigateToLogin();
+
     }
   }
 }

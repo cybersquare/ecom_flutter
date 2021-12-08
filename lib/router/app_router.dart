@@ -3,6 +3,7 @@ import 'package:csecom/home/home.dart';
 import 'package:csecom/router/router_constants.dart';
 import 'package:csecom/signup/view/signup_page.dart';
 import 'package:csecom/splash/splash.dart';
+import 'package:csecom/viewProfile/viewprofile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:csecom/login/login.dart';
@@ -33,6 +34,12 @@ class AppRouter {
         return MaterialPageRoute<MaterialPageRoute>(
           builder: (_) => Home(),
         );
+
+      case RouteConstants.profileRoute:
+        return MaterialPageRoute<MaterialPageRoute>(
+          builder: (_) => const ViewProfile(),
+        );
+
       default:
         return MaterialPageRoute<MaterialPageRoute>(
           builder: (_) => Splash(),
