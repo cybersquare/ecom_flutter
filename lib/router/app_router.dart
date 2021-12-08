@@ -1,4 +1,5 @@
 import 'package:csecom/counter/counter.dart';
+import 'package:csecom/home/home.dart';
 import 'package:csecom/router/router_constants.dart';
 import 'package:csecom/signup/view/signup_page.dart';
 import 'package:csecom/splash/splash.dart';
@@ -28,6 +29,10 @@ class AppRouter {
       case RouteConstants.signupRoute:
         return MaterialPageRoute<MaterialPageRoute>(
           builder: (_) => SignUp(),
+        );
+      case RouteConstants.homeRoute:
+        return MaterialPageRoute<MaterialPageRoute>(
+          builder: (_) => Home(),
         );
 
       case RouteConstants.profileRoute:
