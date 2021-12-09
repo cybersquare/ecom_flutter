@@ -1,3 +1,4 @@
+import 'package:csecom/router/router_constants.dart';
 import 'package:flutter/material.dart';
 
 class NavigationBar extends StatelessWidget {
@@ -35,7 +36,9 @@ class NavigationBar extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.person),
             title: Text('My account'),
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, RouteConstants.profileRoute);
+            },
           ),
           ListTile(
             leading: Icon(Icons.shopping_bag),

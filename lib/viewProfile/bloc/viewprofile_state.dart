@@ -4,3 +4,5 @@ part of 'viewprofile_bloc.dart';
 abstract class ViewprofileState {}
 
 class ViewprofileInitial extends ViewprofileState {}
+
+class NavigateToLoginState extends ViewprofileState {}

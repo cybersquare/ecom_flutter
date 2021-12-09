@@ -10,7 +10,8 @@ class LoginElements extends StatelessWidget {
   final TextEditingController _emailController =
           TextEditingController(text: ''),
       _passwordController = TextEditingController(text: '');
-  LoginBloc _loginBloc = LoginBloc();
+  final LoginBloc _loginBloc = LoginBloc();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -18,109 +19,130 @@ class LoginElements extends StatelessWidget {
       create: (context) => _loginBloc,
       child: BlocConsumer<LoginBloc, LoginState>(
         listener: (context, state) {
-          print(state);
           if (state is NavigateToHomeScreen) {
-            Navigator.pushNamed(context, RouteConstants.profileRoute);
+            Navigator.pushNamed(context, RouteConstants.homeRoute);
             return showTopSnackBar(
               context,
-              CustomSnackBar.success(
-                message: "Successfully logged in.....",
+              const CustomSnackBar.success(
+                message: 'Successfully logged in.....',
               ),
             );
           } else {
             return showTopSnackBar(
               context,
-              CustomSnackBar.error(
+              const CustomSnackBar.error(
                 message:
-                    "Login Failed... Please check your credentials and try again",
+                    'Login Failed... Please check your credentials and try again',
               ),
             );
           }
         },
         builder: (context, state) {
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(bottom: 10, top: 20),
-                child: Image.asset(
-                  'assets/images/cs_ecom_logo.png',
-                  height: 50,
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.only(bottom: 20),
-                child: Text(
-                  'Login',
-                  style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 10.0,
-                  bottom: 30.0,
-                  right: 10.0,
-                  left: 10.0,
-                ),
-                child: TextField(
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: const InputDecoration(
-                    // errorText: "Inavlid username",
-                    hintText: 'Email',
-                    border: OutlineInputBorder(),
+          return Form(
+            key: _formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 10, top: 20),
+                  child: Image.asset(
+                    'assets/images/cs_ecom_logo.png',
+                    height: 50,
                   ),
-                  controller: _emailController,
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10),
-                child: TextField(
-                  keyboardType: TextInputType.text,
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    hintText: 'Password',
-                    border: OutlineInputBorder(),
+                const Padding(
+                  padding: EdgeInsets.only(bottom: 20),
+                  child: Text(
+                    'Login',
+                    style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
                   ),
-                  controller: _passwordController,
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 30.0),
-                child: ElevatedButton(
-                  onPressed: () {
-                    _loginBloc.add(
-                      LoginWithEmailAndPassword(
-                        email: _emailController.text,
-                        password: _passwordController.text,
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: 10,
+                    bottom: 30,
+                    right: 10,
+                    left: 10,
+                  ),
+                  child: TextFormField(
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: const InputDecoration(
+                      // errorText: "Inavlid username",
+                      hintText: 'Email',
+                      border: OutlineInputBorder(),
+                    ),
+                    controller: _emailController,
+                    validator: (value) {
+                      var p =
+                          r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                      final regExp = RegExp(p);
+
+                      if (value!.isEmpty) {
+                        return 'Please enter your username';
+                      } else if (regExp.hasMatch(value) == false) {
+                        return 'Please enter valid username';
+                      }
+                      // return null;
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: TextFormField(
+                    keyboardType: TextInputType.text,
+                    obscureText: true,
+                    decoration: const InputDecoration(
+                      hintText: 'Password',
+                      border: OutlineInputBorder(),
+                    ),
+                    controller: _passwordController,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'please enter your password';
+                      } else if (value.length <= 6) {
+                        return 'Please enter a valid password';
+                      }
+                      // return null;
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 50),
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: TextButton(
+                      child: const Text(
+                        'Login',
+                        style: TextStyle(color: Colors.white),
                       ),
-                    );
-                  },
-                  child: Container(
-                    color: Colors.blue,
-                    height: 40,
-                    width: 60,
-                    child: const Center(
-                      child: Text("Login"),
+                      onPressed: () {
+                        if (_formKey.currentState!.validate() == false) {
+                          _loginBloc.add(
+                            LoginWithEmailAndPassword(
+                              email: _emailController.text,
+                              password: _passwordController.text,
+                            ),
+                          );
+                        }
+                      },
                     ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
-                child: TextButton(
-                  child: Text("Forgot Password?"),
-                  onPressed: () {},
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
+                  child: TextButton(
+                    child: const Text('Forgot Password?'),
+                    onPressed: () {},
+                  ),
                 ),
-              ),
-              TextButton(
-                child: Text("Create an Account?"),
-                onPressed: () {
-                  // print("haii");
-                  Navigator.pushNamed(context, RouteConstants.signupRoute);
-                  // _loginBloc.add(NavigateToSignup());
-                },
-              ),
-            ],
+                TextButton(
+                  child: const Text('Create an Account?'),
+                  onPressed: () {
+                    Navigator.pushNamed(context, RouteConstants.signupRoute);
+                  },
+                ),
+              ],
+            ),
           );
         },
       ),

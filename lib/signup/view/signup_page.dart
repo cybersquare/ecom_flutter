@@ -9,14 +9,15 @@ import 'package:top_snackbar_flutter/top_snack_bar.dart';
 class SignUp extends StatelessWidget {
   SignUp({Key? key}) : super(key: key);
   final TextEditingController _nameTextController =
-      TextEditingController(text: "");
+      TextEditingController(text: '');
   final TextEditingController _addressTextController =
       TextEditingController(text: '');
   final TextEditingController _emailTextController =
-      TextEditingController(text: "");
+      TextEditingController(text: '');
   final TextEditingController _passwordTextController =
-      TextEditingController(text: "");
+      TextEditingController(text: '');
   final SignupBloc _signupBloc = SignupBloc();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class SignUp extends StatelessWidget {
       child: BlocConsumer<SignupBloc, SignupState>(
         listener: (context, state) {
           if (state is NavigateToLogin) {
-            Navigator.pushNamed(context, RouteConstants.profileRoute);
+            Navigator.pushNamed(context, RouteConstants.homeRoute);
             return showTopSnackBar(
               context,
               const CustomSnackBar.success(
@@ -52,124 +53,175 @@ class SignUp extends StatelessWidget {
           }
         },
         builder: (context, state) {
-          return Scaffold(
-            resizeToAvoidBottomInset: false,
-            body: SingleChildScrollView(
-              child: Container(
-                margin:
-                    EdgeInsets.only(top: .30.sw, right: .05.sw, left: .05.sw),
-                decoration: BoxDecoration(
-                  color: Colors.white54,
-                  border: Border.all(color: Colors.black12),
-                ),
-                height: 560.sp,
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10),
-                      child: Image.asset(
-                        'assets/images/cs_ecom_logo.png',
-                        height: 60.sp,
-                      ),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(top: 30, bottom: 20),
-                      child: Text(
-                        'signup',
-                        style: TextStyle(
-                            fontSize: 40, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: TextField(
-                        style: const TextStyle(height: .15),
-                        keyboardType: TextInputType.text,
-                        controller: _nameTextController,
-                        decoration: const InputDecoration(
-                          hintText: 'Name',
-                          border: OutlineInputBorder(),
+          return SafeArea(
+            child: Scaffold(
+              resizeToAvoidBottomInset: false,
+              body: SingleChildScrollView(
+                child: Container(
+                  margin:
+                      EdgeInsets.only(top: 60.sp, right: .05.sw, left: .05.sw),
+                  decoration: BoxDecoration(
+                    color: Colors.white54,
+                    border: Border.all(color: Colors.black12),
+                  ),
+                  height: 630.sp,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10),
+                        child: Image.asset(
+                          'assets/images/cs_ecom_logo.png',
+                          height: 60.sp,
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: TextField(
-                        style: const TextStyle(height: 1),
-                        keyboardType: TextInputType.multiline,
-                        maxLines: 2,
-                        controller: _addressTextController,
-                        decoration: const InputDecoration(
-                          hintText: 'Address',
-                          border: OutlineInputBorder(),
+                      const Padding(
+                        padding: EdgeInsets.only(top: 10, bottom: 20),
+                        child: Text(
+                          'signup',
+                          style: TextStyle(
+                              fontSize: 40, fontWeight: FontWeight.bold),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: TextField(
-                        style: const TextStyle(height: .15),
-                        keyboardType: TextInputType.emailAddress,
-                        controller: _emailTextController,
-                        decoration: const InputDecoration(
-                          hintText: 'Email',
-                          border: OutlineInputBorder(),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: TextField(
-                        style: const TextStyle(height: .15),
-                        keyboardType: TextInputType.text,
-                        controller: _passwordTextController,
-                        decoration: const InputDecoration(
-                          hintText: 'Password',
-                          border: OutlineInputBorder(),
-                        ),
-                        obscureText: true,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: ElevatedButton(
-                        child: Container(
-                          // color: Color(0xFFAB47BC),
-                          color: Colors.blue,
-                          height: 40,
-                          width: 130,
-                          child: const Center(
-                            child: Text('Create Account'),
-                          ),
-                        ),
-                        onPressed: () {
-                          _signupBloc.add(
-                            SaveUserDetailsEvent(
-                              name: _nameTextController.value.text,
-                              address: _addressTextController.value.text,
-                              email: _emailTextController.value.text,
-                              password: _passwordTextController.value.text,
+                      Form(
+                        key: _formKey,
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: TextFormField(
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Please enter your name';
+                                  } else if (value.characters.length < 3) {
+                                    return 'Name should contains atleast 3 characters';
+                                  }
+                                  return null;
+                                },
+                                style: const TextStyle(height: .15),
+                                keyboardType: TextInputType.text,
+                                controller: _nameTextController,
+                                decoration: const InputDecoration(
+                                  hintText: 'Name',
+                                  border: OutlineInputBorder(),
+                                ),
+                              ),
                             ),
-                          );
-                        },
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: InkWell(
-                        child: const Text(
-                          'Already have an account?',
-                          style: TextStyle(fontSize: 18),
+                            Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: TextFormField(
+                                style: const TextStyle(height: 1),
+                                keyboardType: TextInputType.multiline,
+                                maxLines: 2,
+                                controller: _addressTextController,
+                                decoration: const InputDecoration(
+                                  hintText: 'Address',
+                                  border: OutlineInputBorder(),
+                                ),
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Please enter your address';
+                                  } else if (value.characters.length < 3) {
+                                    return 'Address should contains atleast 3 characters';
+                                  }
+                                  return null;
+                                },
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: TextFormField(
+                                style: const TextStyle(height: .15),
+                                keyboardType: TextInputType.emailAddress,
+                                controller: _emailTextController,
+                                decoration: const InputDecoration(
+                                  hintText: 'Email',
+                                  border: OutlineInputBorder(),
+                                ),
+                                validator: (value) {
+                                  String p =
+                                      r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                                  RegExp regExp = new RegExp(p);
+
+                                  if (value!.isEmpty) {
+                                    return 'Please enter your email';
+                                  }
+                                  if (regExp.hasMatch(value) == false) {
+                                    return 'Please enter valid email address';
+                                  }
+                                  return null;
+                                },
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: TextFormField(
+                                style: const TextStyle(height: .15),
+                                keyboardType: TextInputType.text,
+                                controller: _passwordTextController,
+                                decoration: const InputDecoration(
+                                  hintText: 'Password',
+                                  border: OutlineInputBorder(),
+                                ),
+                                obscureText: true,
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Please enter your email';
+                                  } else if (value.length <= 6) {
+                                    return 'Password should contain atleast 6 letter';
+                                  }
+                                },
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: ElevatedButton(
+                                child: Container(
+                                  // color: Color(0xFFAB47BC),
+                                  color: Colors.blue,
+                                  height: 40,
+                                  width: 130,
+                                  child: const Center(
+                                    child: Text('Create Account'),
+                                  ),
+                                ),
+                                onPressed: () {
+                                  if (_formKey.currentState!.validate() ==
+                                      false) {
+                                    _signupBloc.add(
+                                      SaveUserDetailsEvent(
+                                        name: _nameTextController.value.text,
+                                        address:
+                                            _addressTextController.value.text,
+                                        email: _emailTextController.value.text,
+                                        password:
+                                            _passwordTextController.value.text,
+                                      ),
+                                    );
+                                  }
+                                },
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: InkWell(
+                                child: const Text(
+                                  'Already have an account?',
+                                  style: TextStyle(fontSize: 18),
+                                ),
+                                onTap: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    RouteConstants.loginRoute,
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
                         ),
-                        onTap: () {
-                          Navigator.pushNamed(
-                            context,
-                            RouteConstants.loginRoute,
-                          );
-                        },
-                      ),
-                    )
-                  ],
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
