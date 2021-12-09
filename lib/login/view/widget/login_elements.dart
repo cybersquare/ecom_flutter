@@ -20,6 +20,7 @@ class LoginElements extends StatelessWidget {
       child: BlocConsumer<LoginBloc, LoginState>(
         listener: (context, state) {
           if (state is NavigateToHomeScreen) {
+            print("navigate to home screen detected");
             Navigator.pushNamed(context, RouteConstants.homeRoute);
             return showTopSnackBar(
               context,
@@ -99,7 +100,7 @@ class LoginElements extends StatelessWidget {
                     validator: (value) {
                       if (value!.isEmpty) {
                         return 'please enter your password';
-                      } else if (value.length <= 6) {
+                      } else if (value.length < 6) {
                         return 'Please enter a valid password';
                       }
                       // return null;
@@ -117,6 +118,8 @@ class LoginElements extends StatelessWidget {
                       ),
                       onPressed: () {
                         if (_formKey.currentState!.validate() == false) {
+                          print("login test");
+                        } else {
                           _loginBloc.add(
                             LoginWithEmailAndPassword(
                               email: _emailController.text,
@@ -139,6 +142,7 @@ class LoginElements extends StatelessWidget {
                   child: const Text('Create an Account?'),
                   onPressed: () {
                     Navigator.pushNamed(context, RouteConstants.signupRoute);
+                    // _loginBloc.add(NavigateToSignup());
                   },
                 ),
               ],

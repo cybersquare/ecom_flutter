@@ -167,7 +167,7 @@ class SignUp extends StatelessWidget {
                                 validator: (value) {
                                   if (value!.isEmpty) {
                                     return 'Please enter your email';
-                                  } else if (value.length <= 6) {
+                                  } else if (value.length < 6) {
                                     return 'Password should contain atleast 6 letter';
                                   }
                                 },
