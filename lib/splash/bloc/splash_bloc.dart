@@ -25,11 +25,11 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
     if (event is SplashStartEvent) {
       await Future<dynamic>.delayed(const Duration(seconds: 4));
       if (FirebaseAuth.instance.currentUser == null) {
-        print("user not logged in");
-        emit(SplashNavigateToLogin());
+        print('user not logged in');
+        yield SplashNavigateToLogin();
       } else {
-        print("user already logged in");
-        emit(SplashNavigateToHomeScreen());
+        print('user already logged in');
+        yield SplashNavigateToHomeScreen();
       }
       // yield SplashNavigateToLogin();
 

@@ -46,7 +46,7 @@ class SignUp extends StatelessWidget {
                 context,
                 const CustomSnackBar.error(
                   message:
-                      'Registeration Failed! Please check your entered credentials are correct',
+                      'Something went wrong. Please check your credentials and try again',
                 ),
               );
             }
@@ -80,7 +80,9 @@ class SignUp extends StatelessWidget {
                         child: Text(
                           'signup',
                           style: TextStyle(
-                              fontSize: 40, fontWeight: FontWeight.bold),
+                            fontSize: 40,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                       Form(
@@ -149,7 +151,6 @@ class SignUp extends StatelessWidget {
                                   if (regExp.hasMatch(value) == false) {
                                     return 'Please enter valid email address';
                                   }
-                                  return null;
                                 },
                               ),
                             ),
@@ -186,8 +187,9 @@ class SignUp extends StatelessWidget {
                                   ),
                                 ),
                                 onPressed: () {
+                                  print(_formKey.currentState!.validate());
                                   if (_formKey.currentState!.validate() ==
-                                      false) {
+                                      true) {
                                     _signupBloc.add(
                                       SaveUserDetailsEvent(
                                         name: _nameTextController.value.text,
