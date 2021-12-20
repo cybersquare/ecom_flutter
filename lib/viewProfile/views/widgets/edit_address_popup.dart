@@ -23,18 +23,18 @@ class EditAddressPopup extends StatelessWidget {
             editingController: addressController,
             labelText: 'Adress',
           ),
-          UserTextFields(
-            editingController: placeController,
-            labelText: 'Place',
-          ),
-          UserTextFields(
-            editingController: districtController,
-            labelText: 'District',
-          ),
-          UserTextFields(
-            editingController: stateController,
-            labelText: 'State',
-          ),
+          // UserTextFields(
+          //   editingController: placeController,
+          //   labelText: 'Place',
+          // ),
+          // UserTextFields(
+          //   editingController: districtController,
+          //   labelText: 'District',
+          // ),
+          // UserTextFields(
+          //   editingController: stateController,
+          //   labelText: 'State',
+          // ),
           ElevatedButton(
             child: const Text('Update'),
             onPressed: () {},

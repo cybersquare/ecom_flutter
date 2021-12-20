@@ -6,10 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class ProfileDetails extends StatelessWidget {
-  ProfileDetails({Key? key, required this.keyName, required this.keyValue})
-      : super(key: key);
-  String keyName;
-  String keyValue;
+  ProfileDetails({Key? key, required this.address}) : super(key: key);
+  String address;
   ViewprofileBloc _viewprofileBloc = ViewprofileBloc();
 
   // final spinkit = SpinKitSquareCircle(
@@ -51,11 +49,11 @@ class ProfileDetails extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 10),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text('Baabte system technologies, Cafit square'),
-                          Text('Hilite business park'),
-                          Text('Calicut'),
-                          Text('Kerala'),
+                        children: [
+                          Text(address),
+                          // Text('Hilite business park'),
+                          // Text('Calicut'),
+                          // Text('Kerala'),
                         ],
                       ),
                     ),

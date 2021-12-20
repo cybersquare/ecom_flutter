@@ -4,3 +4,5 @@ part of 'viewprofile_bloc.dart';
 abstract class ViewprofileEvent {}
 
 class SignOutEvent extends ViewprofileEvent {}
+
+class LoadProfileDetailsEvent extends ViewprofileEvent {}

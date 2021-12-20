@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 
 class ProfileHeader extends StatelessWidget {
-  const ProfileHeader({Key? key}) : super(key: key);
+  ProfileHeader({
+    Key? key,
+    required this.email,
+    required this.name,
+    required this.mob,
+  }) : super(key: key);
+  String email;
+  String name;
+  String mob;
 
   @override
   Widget build(BuildContext context) {
@@ -16,30 +24,29 @@ class ProfileHeader extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(10),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
+            children: [
               Text(
-                'Surya kiran',
+                name,
                 textAlign: TextAlign.left,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                   fontSize: 15,
                 ),
               ),
               Text(
-                'Suryakiran@baabte.com',
+                email,
                 textAlign: TextAlign.left,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                   fontSize: 15,
                 ),
               ),
               Text(
-                '+91 8606326406',
-                style: TextStyle(
+                mob,
+                style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                   fontSize: 15,

@@ -37,7 +37,7 @@ class AppRouter {
 
       case RouteConstants.profileRoute:
         return MaterialPageRoute<MaterialPageRoute>(
-          builder: (_) => const ViewProfile(),
+          builder: (_) => ViewProfile(),
         );
 
       default:

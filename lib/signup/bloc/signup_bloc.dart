@@ -3,6 +3,7 @@ import 'package:csecom/signup/signup.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'signup_event.dart';
 part 'signup_state.dart';
@@ -16,7 +17,7 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
             // ignore: omit_local_variable_types
 
             // ignore: omit_local_variable_types
-            UserCredential userdetials =
+            final UserCredential userdetials =
                 await _auth.createUserWithEmailAndPassword(
               email: event.email,
               password: event.password,
@@ -29,12 +30,16 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
               'email': event.email,
               'userid': userdetials.user?.uid, // 42
             });
+            // await FlutterSession().set("isAuth", isAuth);
+            final prefs = await SharedPreferences.getInstance();
+            print("test");
+            await prefs.setString('userid', userdetials.user!.uid);
+            print("test1");
+            print(prefs.getString('userid'));
             // print(us);
             emit(NavigateToLogin());
           } on FirebaseAuthException catch (e) {
-            print(e.code);
             if (e.code == 'email-already-in-use') {
-              print('The account already exists for that email.');
               emit(SignUpFailed(emailUseError: true));
             } else {
               emit(SignUpFailed(emailUseError: false));
