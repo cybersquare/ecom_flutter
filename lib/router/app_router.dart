@@ -1,5 +1,7 @@
 import 'package:csecom/counter/counter.dart';
 import 'package:csecom/home/home.dart';
+import 'package:csecom/home/view/widgets/product_detail_widget.dart';
+import 'package:csecom/reset_password/reset_password.dart';
 import 'package:csecom/router/router_constants.dart';
 import 'package:csecom/signup/view/signup_page.dart';
 import 'package:csecom/splash/splash.dart';
@@ -39,6 +41,14 @@ class AppRouter {
         return MaterialPageRoute<MaterialPageRoute>(
           builder: (_) => const ViewProfile(),
         );
+      case RouteConstants.resetpwdRoute:
+        return MaterialPageRoute<MaterialPageRoute>(
+          builder: (_) => ResetPassword(),
+        );
+      //  case RouteConstants.productDetail:
+      //   return MaterialPageRoute<MaterialPageRoute>(
+      //     builder: (_) => ProductDetail(singleProduct: singleProduct),
+      //   );
 
       default:
         return MaterialPageRoute<MaterialPageRoute>(

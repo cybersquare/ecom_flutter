@@ -5,4 +5,6 @@ class RouteConstants {
   static const String loginRoute = '/login';
   static const String signupRoute = '/signup';
   static const String profileRoute = '/profile';
+  static const String resetpwdRoute = '/resetpwd';
+  static const String productDetail = '/productdetail';
 }

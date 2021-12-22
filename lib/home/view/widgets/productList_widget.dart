@@ -1,31 +1,36 @@
-import 'package:csecom/home/home.dart';
+import 'package:csecom/home/bloc/home_bloc.dart';
+import 'package:csecom/home/models/product_model.dart';
+import 'package:csecom/home/view/widgets/product_detail_widget.dart';
 import 'package:flutter/material.dart';
 
-class ProdductDisplay extends StatefulWidget {
-  ProdductDisplay({Key? key, required this.data}) : super(key: key);
-  Products data;
-
-  @override
-  _ProdductDisplayState createState() => _ProdductDisplayState();
-}
-
-class _ProdductDisplayState extends State<ProdductDisplay> {
+class ProductDisplay extends StatelessWidget {
+  ProductDisplay({Key? key, required this.data}) : super(key: key);
+  Product data;
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 0.1,
-      child: Container(
+    return InkWell(
+      onTap: () {
+        Navigator.push<void>(
+          context,
+          MaterialPageRoute<void>(
+            builder: (BuildContext context) =>
+                ProductDetail(singleProduct: data),
+          ),
+        );
+      },
+      child: Card(
+        elevation: 0.1,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Image.asset(widget.data.picture.toString(), fit: BoxFit.fill),
+            Image.asset('assets/images/dummyImage.png', fit: BoxFit.fill),
             ListTile(
               title: Row(
                 children: [
                   Expanded(
                     child: Text(
-                      widget.data.title.toString(),
-                      style: TextStyle(
+                      data.productName,
+                      style: const TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
                       ),
@@ -34,7 +39,7 @@ class _ProdductDisplayState extends State<ProdductDisplay> {
                   Expanded(
                     child: FlatButton(
                       onPressed: () {},
-                      child: Icon(
+                      child: const Icon(
                         Icons.favorite,
                         color: Colors.pink,
                       ),
@@ -47,11 +52,11 @@ class _ProdductDisplayState extends State<ProdductDisplay> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    widget.data.description.toString(),
+                    data.description,
                   ),
                   Text(
-                    widget.data.price.toString(),
-                    style: TextStyle(
+                    data.price.toString(),
+                    style: const TextStyle(
                         color: Colors.green, fontWeight: FontWeight.bold),
                   ),
                 ],
