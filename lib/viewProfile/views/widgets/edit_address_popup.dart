@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class EditAddressPopup extends StatelessWidget {
   EditAddressPopup({Key? key}) : super(key: key);
-  final TextEditingController addressController =
+  TextEditingController addressController =
       TextEditingController(text: 'Baabte system technologies, cafit square');
   final TextEditingController placeController =
       TextEditingController(text: 'Hilite Business Park');

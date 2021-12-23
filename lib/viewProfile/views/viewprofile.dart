@@ -12,6 +12,12 @@ class ViewProfile extends StatelessWidget {
   // String name = 'surya';
   // String email = 'suryakian@baabte.com';
   // String mob = '8606326406';
+  final TextEditingController userNameController =
+      TextEditingController(text: '');
+  final TextEditingController userEmailController =
+      TextEditingController(text: '');
+  final TextEditingController userPhoneController =
+      TextEditingController(text: '+91 8606326406');
   final ViewprofileBloc viewprofileBloc = ViewprofileBloc();
 
   @override
@@ -22,7 +28,14 @@ class ViewProfile extends StatelessWidget {
         child: BlocBuilder<ViewprofileBloc, ViewprofileState>(
           builder: (context, state) {
             print(state);
+            if (state is ProfileUpdatedState) {
+              viewprofileBloc..add(LoadProfileDetailsEvent());
+            }
+
             if (state is LoadProfileDetailsState) {
+              userEmailController.text = state.userData.email;
+              userNameController.text = state.userData.fullName;
+              // String userEmail = state.userData.email;
               // name = ;
               print(state.userData.email);
               return Scaffold(
@@ -41,7 +54,12 @@ class ViewProfile extends StatelessWidget {
                         showDialog<dynamic>(
                           context: context,
                           builder: (BuildContext context) {
-                            return UserUpdatePopup();
+                            return UserUpdatePopup(
+                              email: userEmailController,
+                              userName: userNameController,
+                              phoneNo: userPhoneController,
+                              viewprofileBloc: viewprofileBloc,
+                            );
                           },
                         );
                       },

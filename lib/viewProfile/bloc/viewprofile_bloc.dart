@@ -13,39 +13,30 @@ class ViewprofileBloc extends Bloc<ViewprofileEvent, ViewprofileState> {
   @override
   Stream<ViewprofileState> mapEventToState(ViewprofileEvent event) async* {
     yield ViewProfileLoadingIndicationState();
-    print("12323123123123123123213213");
-    print(event);
     if (event is SignOutEvent) {
       await FirebaseAuth.instance.signOut();
       yield NavigateToLoginState();
     }
     if (event is LoadProfileDetailsEvent) {
       final prefs = await SharedPreferences.getInstance();
-      print(prefs);
-      final userid = prefs.getString('userid');
-      print(userid);
+      userid = prefs.getString('userid');
       final userData = await user.doc(userid).get();
       final userDetails =
           UserDetailsModel.fromJson(userData.data() as Map<String, dynamic>);
       yield LoadProfileDetailsState(userData: userDetails);
     }
+
+    if (event is UserUpdateEvent) {
+      final prefs = await SharedPreferences.getInstance();
+      userid = prefs.getString('userid');
+      await user.doc(userid).update({
+        'email': event.email,
+        'full_name': event.userName,
+      });
+      yield ProfileUpdatedState();
+    }
   }
-  // on<ViewprofileEvent>((event, emit) async* {
-  //   print("12323123123123123123213213");
-  //   yield ViewProfileLoadingIndicationState();
-  //   print("12323123123123123123213213");
-  //   if (event is SignOutEvent) {
-  //     await FirebaseAuth.instance.signOut();
-  //     yield NavigateToLoginState();
-  //   } else if (event is LoadProfileDetailsEvent) {
-  //     final prefs = await SharedPreferences.getInstance();
-  //     final userid = prefs.getString('userid');
-  //     final userData = await user.doc(userid).get();
-  //     final userDetails =
-  //         UserDetailsModel.fromJson(userData.data() as Map<String, dynamic>);
-  //     yield LoadProfileDetailsState(userData: userDetails);
-  //   }
-  // });
 
   CollectionReference user = FirebaseFirestore.instance.collection('users');
+  String? userid;
 }
