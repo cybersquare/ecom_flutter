@@ -10,3 +10,9 @@ class LoadProfileDetailsEvent extends ViewprofileEvent {
     print("object");
   }
 }
+
+class UserUpdateEvent extends ViewprofileEvent {
+  UserUpdateEvent({required this.userName, required this.email});
+  String userName;
+  String email;
+}

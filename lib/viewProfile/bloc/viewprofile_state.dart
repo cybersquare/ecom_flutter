@@ -13,3 +13,5 @@ class LoadProfileDetailsState extends ViewprofileState {
 }
 
 class ViewProfileLoadingIndicationState extends ViewprofileState {}
+
+class ProfileUpdatedState extends ViewprofileState {}
