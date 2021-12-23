@@ -5,4 +5,8 @@ abstract class ViewprofileEvent {}
 
 class SignOutEvent extends ViewprofileEvent {}
 
-class LoadProfileDetailsEvent extends ViewprofileEvent {}
+class LoadProfileDetailsEvent extends ViewprofileEvent {
+  LoadProfileDetailsEvent() {
+    print("object");
+  }
+}

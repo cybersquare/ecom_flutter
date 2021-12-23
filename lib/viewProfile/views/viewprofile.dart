@@ -16,51 +16,65 @@ class ViewProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => viewprofileBloc..add(LoadProfileDetailsEvent()),
-      child: BlocBuilder<ViewprofileBloc, ViewprofileState>(
-        builder: (context, state) {
-          if (state is LoadProfileDetailsState) {
-            // name = ;
-            print(state.userData.email);
-            return Scaffold(
-              appBar: AppBar(
-                automaticallyImplyLeading: false,
-                backgroundColor: Colors.blueGrey[50],
-                toolbarHeight: MediaQuery.of(context).size.width / 3,
-                title: ProfileHeader(
-                  email: state.userData.email,
-                  name: state.userData.fullName,
-                  mob: '8606xxxxxx',
-                ),
-                actions: [
-                  TextButton(
-                    onPressed: () {
-                      showDialog<dynamic>(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return UserUpdatePopup();
-                        },
-                      );
-                    },
-                    child: const Text(
-                      'Edit',
-                      style: TextStyle(fontSize: 15),
-                    ),
+    return SafeArea(
+      child: BlocProvider(
+        create: (context) => viewprofileBloc..add(LoadProfileDetailsEvent()),
+        child: BlocBuilder<ViewprofileBloc, ViewprofileState>(
+          builder: (context, state) {
+            print(state);
+            if (state is LoadProfileDetailsState) {
+              // name = ;
+              print(state.userData.email);
+              return Scaffold(
+                appBar: AppBar(
+                  automaticallyImplyLeading: false,
+                  backgroundColor: Colors.blueGrey[50],
+                  toolbarHeight: MediaQuery.of(context).size.width / 3,
+                  title: ProfileHeader(
+                    email: state.userData.email,
+                    name: state.userData.fullName,
+                    mob: '8606xxxxxx',
                   ),
-                ],
-              ),
-              body: Padding(
-                padding: const EdgeInsets.only(top: 20, bottom: 20),
-                child: ProfileDetails(
-                  address: state.userData.address,
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        showDialog<dynamic>(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return UserUpdatePopup();
+                          },
+                        );
+                      },
+                      child: const Text(
+                        'Edit',
+                        style: TextStyle(fontSize: 15),
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-            );
-          } else {
-            return const CircularProgressIndicator();
-          }
-        },
+                body: Padding(
+                  padding: const EdgeInsets.only(top: 20, bottom: 20),
+                  child: ProfileDetails(
+                    address: state.userData.address,
+                  ),
+                ),
+              );
+            } else if (state is ViewProfileLoadingIndicationState) {
+              return Scaffold(
+                body: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      CircularProgressIndicator(),
+                    ],
+                  ),
+                ),
+              );
+            } else {
+              return Container();
+            }
+          },
+        ),
       ),
     );
   }
