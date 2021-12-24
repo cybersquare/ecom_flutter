@@ -1,3 +1,4 @@
+import 'package:csecom/router/router_constants.dart';
 import 'package:csecom/viewProfile/viewprofile.dart';
 import 'package:csecom/viewProfile/views/widgets/edit_address_popup.dart';
 import 'package:csecom/viewProfile/views/widgets/profile_header.dart';
@@ -18,6 +19,7 @@ class ViewProfile extends StatelessWidget {
       TextEditingController(text: '');
   final TextEditingController userPhoneController =
       TextEditingController(text: '+91 8606326406');
+  TextEditingController adressController = TextEditingController(text: '');
   final ViewprofileBloc viewprofileBloc = ViewprofileBloc();
 
   @override
@@ -29,12 +31,19 @@ class ViewProfile extends StatelessWidget {
           builder: (context, state) {
             print(state);
             if (state is ProfileUpdatedState) {
-              viewprofileBloc..add(LoadProfileDetailsEvent());
+              print('Hsaafdsfsd');
+              viewprofileBloc.add(LoadProfileDetailsEvent());
+            }
+            if (state is NavigateToLoginState) {
+              print("logout navigation start");
+              // ignore: avoid_dynamic_calls
+              Navigator.pushNamed(context, RouteConstants.loginRoute);
             }
 
             if (state is LoadProfileDetailsState) {
               userEmailController.text = state.userData.email;
               userNameController.text = state.userData.fullName;
+              adressController.text = state.userData.address;
               // String userEmail = state.userData.email;
               // name = ;
               print(state.userData.email);
@@ -73,7 +82,8 @@ class ViewProfile extends StatelessWidget {
                 body: Padding(
                   padding: const EdgeInsets.only(top: 20, bottom: 20),
                   child: ProfileDetails(
-                    address: state.userData.address,
+                    address: adressController,
+                    viewprofileBloc: viewprofileBloc,
                   ),
                 ),
               );

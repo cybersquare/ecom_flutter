@@ -18,6 +18,7 @@ class ViewprofileBloc extends Bloc<ViewprofileEvent, ViewprofileState> {
       yield NavigateToLoginState();
     }
     if (event is LoadProfileDetailsEvent) {
+      print('+++++++++++++++++++++++++++++++++++++');
       final prefs = await SharedPreferences.getInstance();
       userid = prefs.getString('userid');
       final userData = await user.doc(userid).get();
@@ -33,6 +34,15 @@ class ViewprofileBloc extends Bloc<ViewprofileEvent, ViewprofileState> {
         'email': event.email,
         'full_name': event.userName,
       });
+      yield ProfileUpdatedState();
+    }
+    if (event is UserAdressUpdateEvent) {
+      final prefs = await SharedPreferences.getInstance();
+      userid = prefs.getString('userid');
+      await user.doc(userid).update({
+        'address': event.adress,
+      });
+      print('-----------------');
       yield ProfileUpdatedState();
     }
   }

@@ -6,13 +6,16 @@ abstract class ViewprofileEvent {}
 class SignOutEvent extends ViewprofileEvent {}
 
 class LoadProfileDetailsEvent extends ViewprofileEvent {
-  LoadProfileDetailsEvent() {
-    print("object");
-  }
+  LoadProfileDetailsEvent();
 }
 
 class UserUpdateEvent extends ViewprofileEvent {
   UserUpdateEvent({required this.userName, required this.email});
   String userName;
   String email;
+}
+
+class UserAdressUpdateEvent extends ViewprofileEvent {
+  UserAdressUpdateEvent({required this.adress});
+  String adress;
 }
