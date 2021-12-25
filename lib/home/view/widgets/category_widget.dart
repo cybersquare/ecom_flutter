@@ -18,7 +18,6 @@ class Categories extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
-            // mainAxisSize: MainAxisSize.min,
             children: [
               ClipOval(
                 child: Image.asset(
@@ -29,10 +28,10 @@ class Categories extends StatelessWidget {
                 ),
               ),
               Expanded(
-                  child: Text(
-                category[index].values.first,
-                style: TextStyle(),
-              )),
+                child: Text(
+                  category[index].values.first,
+                ),
+              ),
             ],
           ),
         );

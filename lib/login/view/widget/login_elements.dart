@@ -135,15 +135,18 @@ class LoginElements extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
                   child: TextButton(
                     child: const Text('Forgot Password?'),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(
+                          context, RouteConstants.resetpwdRoute);
+                    },
                   ),
                 ),
                 TextButton(
-                  child: const Text('Create an Account?'),
                   onPressed: () {
                     Navigator.pushNamed(context, RouteConstants.signupRoute);
                     // _loginBloc.add(NavigateToSignup());
                   },
+                  child: const Text('Create an Account?'),
                 ),
               ],
             ),
