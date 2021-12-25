@@ -16,7 +16,7 @@ class Home extends StatelessWidget {
     return BlocProvider<HomeBloc>(
       create: (context) => homeBloc..add(ProductListingEvent()),
       child: Scaffold(
-        drawer: NavigationBar(blocInstance: homeBloc),
+        drawer: SideNavigationBar(blocInstance: homeBloc),
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(50),
           child: HomeAppBar(),

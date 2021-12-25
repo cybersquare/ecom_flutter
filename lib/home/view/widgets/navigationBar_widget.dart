@@ -3,8 +3,8 @@ import 'package:csecom/router/router_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class NavigationBar extends StatelessWidget {
-  NavigationBar({Key? key, required this.blocInstance}) : super(key: key);
+class SideNavigationBar extends StatelessWidget {
+  SideNavigationBar({Key? key, required this.blocInstance}) : super(key: key);
   HomeBloc blocInstance;
   @override
   Widget build(BuildContext context) {
