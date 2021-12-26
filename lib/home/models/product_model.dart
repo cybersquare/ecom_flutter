@@ -5,6 +5,7 @@ class Product {
     required this.price,
     required this.quantity,
     required this.status,
+    required this.imageurl,
   });
 
   Product.fromJson(Map<String, dynamic> json) {
@@ -13,6 +14,7 @@ class Product {
     price = double.parse(json['price'].toString());
     quantity = int.parse(json['quantity'].toString());
     status = json['status'].toString();
+    imageurl = json['imageurl'].toString();
   }
 
   late final String productName;
@@ -20,6 +22,7 @@ class Product {
   late final double price;
   late final int quantity;
   late final String status;
+  late final String imageurl;
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
@@ -28,6 +31,7 @@ class Product {
     _data['price'] = price;
     _data['quantity'] = quantity;
     _data['status'] = status;
+    _data['imageurl'] = imageurl;
     return _data;
   }
 }

@@ -20,7 +20,10 @@ class ProductDetail extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Image.asset('assets/images/dummyImage.png', fit: BoxFit.fill),
+              Image.network(
+                singleProduct.imageurl,
+                fit: BoxFit.fill,
+              ),
               ListTile(
                 title: Row(
                   children: [
