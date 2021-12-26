@@ -23,7 +23,10 @@ class ProductDisplay extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Image.asset('assets/images/dummyImage.png', fit: BoxFit.fill),
+            Image.network(
+              data.imageurl,
+              fit: BoxFit.fill,
+            ),
             ListTile(
               title: Row(
                 children: [
