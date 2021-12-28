@@ -33,7 +33,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         } catch (e) {
           print(e);
           print('Login faileddddddddddddd');
-          // emit(LoginFailedState());
+          emit(LoginFailedState());
         }
       }
     });
