@@ -99,7 +99,9 @@ class ProfileDetails extends StatelessWidget {
             title: Text('My Cart'),
             trailing: Icon(Icons.arrow_forward_ios),
           ),
-          onTap: () {},
+          onTap: () {
+            Navigator.of(context).pushNamed(RouteConstants.cart);
+          },
         ),
         const Divider(
           thickness: 1,

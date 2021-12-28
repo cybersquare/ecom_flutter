@@ -7,4 +7,5 @@ class RouteConstants {
   static const String profileRoute = '/profile';
   static const String resetpwdRoute = '/resetpwd';
   static const String productDetail = '/productdetail';
+  static const String cart = '/cart';
 }

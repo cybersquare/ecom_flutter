@@ -1,3 +1,4 @@
+import 'package:csecom/cart/view/cart.dart';
 import 'package:csecom/counter/counter.dart';
 import 'package:csecom/home/home.dart';
 import 'package:csecom/home/view/widgets/product_detail_widget.dart';
@@ -41,9 +42,15 @@ class AppRouter {
         return MaterialPageRoute<MaterialPageRoute>(
           builder: (_) => ViewProfile(),
         );
+
       case RouteConstants.resetpwdRoute:
         return MaterialPageRoute<MaterialPageRoute>(
           builder: (_) => ResetPassword(),
+        );
+
+      case RouteConstants.cart:
+        return MaterialPageRoute<MaterialPageRoute>(
+          builder: (_) => const Cart(),
         );
       //  case RouteConstants.productDetail:
       //   return MaterialPageRoute<MaterialPageRoute>(

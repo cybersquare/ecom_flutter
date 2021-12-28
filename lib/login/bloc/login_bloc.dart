@@ -14,15 +14,16 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     on<LoginEvent>((event, emit) async {
       if (event is LoginWithEmailAndPassword) {
         try {
-          var userdetails = await auth.signInWithEmailAndPassword(
+          final userdetails = await auth.signInWithEmailAndPassword(
             email: event.email,
             password: event.password,
           );
           print(userdetails);
           if (userdetails == null) {
-            print("LOGIN FAILED");
+            print('LOGIN FAILED');
             emit(LoginFailedState());
           } else {
+            print("objectsssssssssssssssss");
             final SharedPreferences prefs =
                 await SharedPreferences.getInstance();
 
@@ -30,9 +31,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
             emit(NavigateToHomeScreen());
           }
         } catch (e) {
-          print('Login failed');
+          print(e);
           print('Login faileddddddddddddd');
-          emit(LoginFailedState());
+          // emit(LoginFailedState());
         }
       }
     });
