@@ -5,17 +5,21 @@ import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:meta/meta.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:uuid/uuid.dart';
 part 'home_event.dart';
 part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(HomeInitial());
   FirebaseAuth auth = FirebaseAuth.instance;
+  final CollectionReference cart =
+      FirebaseFirestore.instance.collection('cart');
   List<Product> productList = [];
-
+  var uuid = Uuid();
   @override
   Stream<HomeState> mapEventToState(HomeEvent event) async* {
+    final prefs = await SharedPreferences.getInstance();
     print(event);
     if (event is ProductListingEvent) {
       final CollectionReference collectionReference =
@@ -26,14 +30,41 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           Product.fromJson(element.data() as Map<String, dynamic>),
         );
       });
+
       print(data);
       yield ProductListingState(data: productList);
     }
     if (event is UserLogoutEvent) {
       var logout = await auth.signOut();
-      // ignore: avoid_dynamic_calls
       yield UserLogoutState();
     }
-    // yield ProductListingState(data: productList);
+    if (event is AddToCartEvent) {
+      DocumentReference reference = cart.doc();
+      dynamic val;
+      var userCartData = await cart
+          .where('productId', isEqualTo: event.productId)
+          .where('userId', isEqualTo: prefs.getString('userid'))
+          .get();
+      print(userCartData.docs.length);
+      if (userCartData.docs.length == 0) {
+        val = await cart.add({
+          'cartId': uuid.v4(),
+          'productId': event.productId,
+          'userId': await prefs.getString('userid'),
+          'quantity': 1,
+        });
+      } else {
+        for (var i in userCartData.docs) {
+          await cart.doc(i.id).update({
+            'quantity': i.get('quantity') + 1,
+          });
+        }
+      }
+      if (val == null) {
+        yield AddToCartFailureState();
+      } else {
+        yield AddToCartSuccessState();
+      }
+    }
   }
 }
