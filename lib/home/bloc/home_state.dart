@@ -19,3 +19,7 @@ class ProductListingState extends HomeState {
 }
 
 class UserLogoutState extends HomeState {}
+
+class AddToCartSuccessState extends HomeState {}
+
+class AddToCartFailureState extends HomeState {}

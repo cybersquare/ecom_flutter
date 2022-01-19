@@ -10,3 +10,15 @@ abstract class HomeEvent extends Equatable {
 class ProductListingEvent extends HomeEvent {}
 
 class UserLogoutEvent extends HomeEvent {}
+
+class AddToCartEvent extends HomeEvent {
+  AddToCartEvent({
+    // required this.cartId,
+    required this.productId,
+    // required this.userId,
+  });
+
+  // final String cartId;
+  final String productId;
+  // final String userId;
+}

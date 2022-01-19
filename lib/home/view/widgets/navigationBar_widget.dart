@@ -62,12 +62,16 @@ class SideNavigationBar extends StatelessWidget {
               ListTile(
                 leading: Icon(Icons.settings),
                 title: Text('Settings'),
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, RouteConstants.settingsRoute);
+                },
               ),
               ListTile(
                 leading: Icon(Icons.help),
                 title: Text('About us'),
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, RouteConstants.aboutusRoute);
+                },
               ),
               Divider(),
               ListTile(
