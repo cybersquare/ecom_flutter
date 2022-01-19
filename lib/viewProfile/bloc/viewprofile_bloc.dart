@@ -18,12 +18,15 @@ class ViewprofileBloc extends Bloc<ViewprofileEvent, ViewprofileState> {
       yield NavigateToLoginState();
     }
     if (event is LoadProfileDetailsEvent) {
-      print('+++++++++++++++++++++++++++++++++++++');
       final prefs = await SharedPreferences.getInstance();
       userid = prefs.getString('userid');
+
       final userData = await user.doc(userid).get();
+      print('+++++++++++++++++++++++++++++++++++++');
+      print(userData.data());
       final userDetails =
           UserDetailsModel.fromJson(userData.data() as Map<String, dynamic>);
+
       yield LoadProfileDetailsState(userData: userDetails);
     }
 

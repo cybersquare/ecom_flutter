@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:csecom/about_us/view/about_us_page.dart';
+import 'package:csecom/cart/view/cart.dart';
 import 'package:csecom/counter/counter.dart';
 import 'package:csecom/home/home.dart';
 import 'package:csecom/home/view/widgets/product_detail_widget.dart';
@@ -44,6 +45,7 @@ class AppRouter {
         return MaterialPageRoute<MaterialPageRoute>(
           builder: (_) => ViewProfile(),
         );
+
       case RouteConstants.resetpwdRoute:
         return MaterialPageRoute<MaterialPageRoute>(
           builder: (_) => ResetPassword(),
@@ -55,6 +57,10 @@ class AppRouter {
       case RouteConstants.settingsRoute:
         return MaterialPageRoute<MaterialPageRoute>(
           builder: (_) => SettingsPage(),
+        );
+      case RouteConstants.cart:
+        return MaterialPageRoute<MaterialPageRoute>(
+          builder: (_) => const Cart(),
         );
 
       default:

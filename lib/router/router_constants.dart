@@ -9,4 +9,5 @@ class RouteConstants {
   static const String productDetail = '/productdetail';
   static const String aboutusRoute = '/aboutus';
   static const String settingsRoute = '/settings';
+  static const String cart = '/cart';
 }

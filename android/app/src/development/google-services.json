@@ -1,52 +1,65 @@
 {
     "project_info": {
-        "project_number": "594962795089",
-        "project_id": "csecom-admin-project",
-        "storage_bucket": "csecom-admin-project.appspot.com"
+        "project_number": "57347468263",
+        "project_id": "cs-ecom-admin",
+        "storage_bucket": "cs-ecom-admin.appspot.com"
     },
-    "client": [{
+    "client": [
+        {
             "client_info": {
-                "mobilesdk_app_id": "1:594962795089:android:6e93628de8750f94f88670",
+                "mobilesdk_app_id": "1:57347468263:android:02eaf902ac06d51347eb42",
                 "android_client_info": {
                     "package_name": "com.baabte.cs_ecomm.dev"
                 }
             },
-            "oauth_client": [{
-                "client_id": "594962795089-9vngl2o5elbvgqc5j95tsqbk0r1mm8oi.apps.googleusercontent.com",
-                "client_type": 3
-            }],
-            "api_key": [{
-                "current_key": "AIzaSyBZTAfmj34M-hs2y0i9kB4AfjhoOp_4_Ic"
-            }],
+            "oauth_client": [
+                {
+                    "client_id": "57347468263-613pqk4gmjo4ml2c0iuqcmsa99kke9do.apps.googleusercontent.com",
+                    "client_type": 3
+                }
+            ],
+            "api_key": [
+                {
+                    "current_key": "AIzaSyC2dWosHz2E1p5Btf-X9cvXG7fYwzDEBYw"
+                }
+            ],
             "services": {
                 "appinvite_service": {
-                    "other_platform_oauth_client": [{
-                        "client_id": "594962795089-9vngl2o5elbvgqc5j95tsqbk0r1mm8oi.apps.googleusercontent.com",
-                        "client_type": 3
-                    }]
+                    "other_platform_oauth_client": [
+                        {
+                            "client_id": "57347468263-613pqk4gmjo4ml2c0iuqcmsa99kke9do.apps.googleusercontent.com",
+                            "client_type": 3
+                        }
+                    ]
                 }
             }
         },
         {
             "client_info": {
-                "mobilesdk_app_id": "1:594962795089:android:e2bb9f2450e9ad23f88670",
+                "mobilesdk_app_id": "1:57347468263:android:f2b4a495ab863b9847eb42",
                 "android_client_info": {
                     "package_name": "com.baabtra.csecom.dev"
                 }
             },
-            "oauth_client": [{
-                "client_id": "594962795089-9vngl2o5elbvgqc5j95tsqbk0r1mm8oi.apps.googleusercontent.com",
-                "client_type": 3
-            }],
-            "api_key": [{
-                "current_key": "AIzaSyBZTAfmj34M-hs2y0i9kB4AfjhoOp_4_Ic"
-            }],
+            "oauth_client": [
+                {
+                    "client_id": "57347468263-613pqk4gmjo4ml2c0iuqcmsa99kke9do.apps.googleusercontent.com",
+                    "client_type": 3
+                }
+            ],
+            "api_key": [
+                {
+                    "current_key": "AIzaSyC2dWosHz2E1p5Btf-X9cvXG7fYwzDEBYw"
+                }
+            ],
             "services": {
                 "appinvite_service": {
-                    "other_platform_oauth_client": [{
-                        "client_id": "594962795089-9vngl2o5elbvgqc5j95tsqbk0r1mm8oi.apps.googleusercontent.com",
-                        "client_type": 3
-                    }]
+                    "other_platform_oauth_client": [
+                        {
+                            "client_id": "57347468263-613pqk4gmjo4ml2c0iuqcmsa99kke9do.apps.googleusercontent.com",
+                            "client_type": 3
+                        }
+                    ]
                 }
             }
         }
