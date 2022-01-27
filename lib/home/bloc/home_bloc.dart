@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:csecom/home/models/product_model.dart';
@@ -52,6 +54,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           'productId': event.productId,
           'userId': await prefs.getString('userid'),
           'quantity': 1,
+          'productName': event.productName,
+          'imageUrl': event.productImage,
+          'price': event.price,
         });
       } else {
         for (var i in userCartData.docs) {

@@ -22,7 +22,6 @@ class Splash extends StatelessWidget {
             }
           },
           builder: (context, state) {
-            print(state);
             return Center(child: Image.asset('assets/images/logo.jpeg'));
           },
         ),

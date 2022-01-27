@@ -13,12 +13,14 @@ class UserLogoutEvent extends HomeEvent {}
 
 class AddToCartEvent extends HomeEvent {
   AddToCartEvent({
-    // required this.cartId,
+    required this.productImage,
     required this.productId,
-    // required this.userId,
+    required this.productName,
+    required this.price,
   });
 
-  // final String cartId;
+  final String productImage;
   final String productId;
-  // final String userId;
+  final String productName;
+  final double price;
 }

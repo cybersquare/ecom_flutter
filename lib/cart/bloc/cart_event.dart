@@ -6,3 +6,9 @@ abstract class CartEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class CartLoadEvent extends CartEvent {
+  CartLoadEvent() {
+    print("HELLLOOOOOO");
+  }
+}

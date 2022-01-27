@@ -82,6 +82,9 @@ class ProductDetail extends StatelessWidget {
                           onPressed: () {
                             _homeBloc.add(AddToCartEvent(
                               productId: singleProduct.productId,
+                              productImage: singleProduct.imageurl,
+                              productName: singleProduct.productName,
+                              price: singleProduct.price,
                               // userId: await prefs.getStirng),
                             ));
                           },
